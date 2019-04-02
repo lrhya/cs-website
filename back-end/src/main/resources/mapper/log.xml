@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.LogDao">
+    <insert id="addLog" parameterType="com.jplus.entity.Log">
+        INSERT INTO log(Id,user,ip,actiontime,action) VALUES(#{id},#{user},#{ip},#{actionTime},#{action})
+    </insert>
+
+    <select id="findById" parameterType="int" resultType="com.jplus.entity.Log">
+        SELECT user,ip,action,actiontime FROM log WHERE Id =#{id}
+    </select>
+
+    <select id="findLogSelective" parameterType="map" resultType="com.jplus.entity.Log">
+        SELECT id,user,ip,actiontime AS actionTime, action FROM log
+        <where>
+            <if test="log!=null">
+                <if test="log.user!=null">
+                    user LIKE '%${log.user}%'
+                </if>
+                <if test="log.ip !=null">
+                    AND ip = #{log.ip}
+                </if>
+            </if>
+        </where>
+        ORDER BY actiontime DESC limit #{start},#{size}
+    </select>
+
+    <select id="findLogSelectiveNum" parameterType="com.jplus.entity.Log" resultType="int">
+        SELECT count(Id) FROM log
+        <where>
+            <if test="user !=null">
+                user LIKE '%${user}%'
+            </if>
+            <if test="ip !=null">
+                AND ip=#{ip}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteBach" parameterType="int">
+        DELETE FROM log WHERE Id IN
+        <foreach collection="array" item="logId" open="(" separator="," close=")">
+            #{logId}
+        </foreach>
+    </delete>
+    <delete id="deleteLog" parameterType="int">
+        DELETE FROM log WHERE
+        id=#{id}
+    </delete>
+</mapper>

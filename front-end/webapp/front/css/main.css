@@ -1,0 +1,724 @@
+@charset "UTF-8";
+/*
+* @description: 计算机科学与技术前台全部页面样式
+* @author: lan
+* @date: 2017-11-5
+*/
+/* 对cssm默认样式进行消除 */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica Neue,Helvetica,PingFang SC,微软雅黑,Tahoma,Arial,sans-serif;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+input,
+textarea {
+    outline: none;
+}
+body{
+    background: url("../img/bodyr-bg.png");
+    font-size: 16px;
+}
+.fr{
+    float: right;
+}
+/*清除浮动,避免干扰*/
+.clear {
+    clear: both;
+}
+
+p {
+    text-indent: 35px;
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+/* 首页头部样式 */
+/* 背景图片 */
+
+#header, .main{
+    width: 1176px;
+    min-width: 1176px;
+    margin: 0 auto;
+}
+
+/*!* 用于不同的屏幕 *!*/
+/*@media (max-width: 1000px){*/
+    /*.nav::after,*/
+    /*.nav::before{*/
+        /*width: 0  !important;*/
+    /*}*/
+    /*#footer {*/
+        /*width: 1150px !important;*/
+    /*}*/
+/*}!* 首页main *!*/
+/*.main {*/
+    /*!*margin: 5px auto;*!*/
+    /*!*width: 1160px;*!*/
+/*!*>>>>>>> a0db03bc1e2e564a9245894c660e96a25cba75d7*!*/
+    /*min-width: 800px;*/
+    /*margin: 0 auto;*/
+/*}*/
+
+#header {
+    height: 112px;
+    border-radius: 3px;
+    position: relative;
+    margin-top: 10px;
+}
+
+/* 头部校徽 */
+#header img {
+    position: absolute;
+    top: -8px;
+    left: 10px;
+}
+
+#header span {
+    position: absolute;
+    bottom: 10px;
+    right: 45px;
+    color: rgba(0, 0, 0, 0.79);
+    font-size: 53px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    font-family: cursive;
+}
+
+/* 导航栏 */
+.nav, #footer{
+    width: 100%;
+    min-width: 1176px;
+    margin: 0 auto;
+    background: #398adc;
+}
+
+/* 导航居中 */
+.nav .nav-list {
+    width: 1176px;
+    min-width: 1176px;
+    margin: 0 auto;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    color: #fff;
+}
+/* 导航内容水平均匀排列 */
+.nav .show {
+    width: 104px;
+    float: left;
+    text-align: center;
+    position: relative;
+}
+
+/* 字体颜色 */
+.nav-list a {
+    color: #fff;
+}
+
+/* 鼠标触碰显示详细菜单 */
+.fade-lists {
+    display: none;
+}
+
+/* 详细菜单样式 */
+.nav-list .show .fade-lists.active {
+    display: inline-block;
+    position: absolute;
+    top: 42px;
+    left: 2px;
+    z-index: 1000;
+    width: 101px;
+    background: rgba(252, 249, 249, 0.6);
+    font-size: 14px;
+}
+
+/* 区别鼠标触碰与不触碰 */
+.nav .show .fade-lists.active li a {
+    display: inline-block;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+.nav .show .fade-lists.active li a:hover {
+    color: #fff;
+}
+
+/* 设置查看菜单的li各部分宽度 */
+.nav .show li {
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+}
+
+.nav .show .fade-lists.active li:hover {
+    background: #3f4463;
+}
+
+/* 轮播图 */
+/*#carousel,*/
+/*.picture {*/
+    /*width: 100%;*/
+    /*height: 300px;*/
+    /*position: relative;*/
+/*}*/
+
+/*!* 轮播图左右进行扩充使其可以充满这个页面 .picture-one表示子页面图片 *!*/
+/*!* 子页面固定一张图 *!*/
+/*!* 轮播图图片大小及位置  子页面中固定的图片大小*!*/
+/*#carousel .picture img,*/
+/*.picture-one img {*/
+    /*width: 1140px;*/
+    /*height: 290px;*/
+    /*margin-left: 3px;*/
+/*}*/
+
+/*!* 随着轮播图的滚动, 数字也会方式相应的变化 *!*/
+/*#carousel .picture ul {*/
+    /*position: absolute;*/
+    /*bottom: 38px;*/
+    /*right: 528px;*/
+    /*z-index: 200;*/
+/*}*/
+
+/*#carousel .picture li {*/
+    /*float: left;*/
+    /*margin-right: 10px;*/
+    /*padding: 5px 5px;*/
+    /*border-radius: 10px;*/
+    /*background: #fff;*/
+/*}*/
+
+/*#carousel .picture li.active {*/
+    /*color: #fff;*/
+    /*background: #f39b03;*/
+/*}*/
+
+/*=======*/
+/*#carousel ,*/
+/*.picture{*/
+    /*width: 100%;*/
+    /*height: 300px;*/
+    /*position: relative;*/
+/*}*/
+/*!* 轮播图左右进行扩充使其可以充满这个页面 .picture-one表示子页面图片 *!*/
+/*!* 子页面固定一张图 *!*/
+/*!* 轮播图图片大小及位置  子页面中固定的图片大小*!*/
+/*#carousel .picture img,*/
+/*.picture-one img {*/
+    /*width: 99%;*/
+    /*height: 290px;*/
+    /*margin-left: 3px;*/
+/*}*/
+/*!* 随着轮播图的滚动, 数字也会方式相应的变化 *!*/
+/*#carousel .picture ul{*/
+    /*position: absolute;*/
+    /*bottom: 38px;*/
+    /*right: 528px;*/
+    /*z-index: 200;*/
+/*}*/
+/*#carousel .picture li{*/
+    /*float: left;*/
+    /*margin-right: 10px;*/
+    /*padding: 5px 5px;*/
+    /*border-radius: 10px;*/
+    /*background: #fff;*/
+/*}*/
+/*#carousel .picture li.active{*/
+    /*color: #fff;*/
+    /*background: #f39b03;*/
+/*}*/
+/*>>>>>>> a0db03bc1e2e564a9245894c660e96a25cba75d7*/
+/* cont: 表示首页的报告相同的盒子模型 即用cont-child表示4个小盒子 */
+.main .cont,
+.main .cont-content {
+    width: 100%;
+    padding-left: 20px;
+    min-height: 560px;
+}
+#content .picture-one img{
+    width: 1176px!important;
+    margin: 0 auto;
+}
+.main  .cont-child{
+    width: 46%;
+
+    height: 230px;
+    margin: 10px 4px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.53);
+    border-radius: 0 0 5px 5px;
+}
+
+/* 横向小标题 */
+.main .cont-child .title {
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    background: rgba(213, 208, 212, 0.76);
+    font-weight: 500;
+    font-size: 15px;
+    color: #241f1f;
+    box-shadow: 3px 3px 3px rgba(92, 91, 91, 0.58);
+    border: 1px solid #ccc;
+}
+
+/* 分支左边 */
+.main .title .label {
+    display: inline-block;
+    width: 106px;
+    background: #0075d4;
+    height: 30px;
+    padding-left: 20px;
+    color: #fff;
+    position: relative;
+    border-radius: 5px;
+}
+
+/* 标题后面的叶子图片 */
+.main .title .label::after,
+.cont-next .title::after,
+.cont-right .title::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 24px;
+    top: 3px;
+    left: 86px;
+    background-image: url(../img/leaf.png);
+}
+
+/* 分支右边 */
+.main .title .more {
+    float: right;
+    position: relative;
+    padding-right: 30px;
+    font-size: 13px;
+}
+
+/* 4个模块中信息列表(包括文章的简介 和 时间) */
+/* 简介 */
+.cont-child ul {
+    margin: 7px 15px 15px 15px;
+    font-size: 15px;
+}
+
+.cont-child ul li {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding: 3px 0 5px 10px;
+    position: relative
+}
+
+/* 列表前小图标位置 */
+.cont-child ul li:before {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    width: 30px;
+    height: 30px;
+    top: 1px;
+    left: -11px;
+    background: url(../img/reddot.png) no-repeat;
+}
+
+.cont-child ul li a {
+    display: inline-block;
+    width: 66%;
+    padding-left: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #000000;
+}
+
+.cont-child ul li a:hover,
+.main .title .more:hover {
+    text-decoration: underline;
+    color: #8a0000;
+}
+
+/* 时间 */
+.cont-child ul li .time {
+    float: right;
+    color: #8d8a8a;
+}
+
+/* 4个模块的位置不同 */
+.main .cont-child:nth-child(1),
+.main .cont-child:nth-child(3) {
+    float: left;
+}
+
+.main .cont-child:nth-child(2),
+.main .cont-child:nth-child(4) {
+    float: right;
+    margin-right: 47px;
+}
+
+/* 校企合作 */
+.main .cont-next,
+
+.main .cont-right{
+    width: 45%;
+    height: 160px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.main .cont-next {
+    margin: 15px 4px;
+    float: left;
+}
+
+/* 小标题背景 */
+.cont-next .title,
+.cont-right .title {
+    display: inline-block;
+    width: 106px;
+    background: #0075d4;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    color: #fff;
+    position: relative;
+    border-radius: 5px;
+}
+
+/* 校企合作中的图片 */
+.cont-next ul {
+    margin-left: 3px;
+}
+
+.cont-next ul li {
+    float: left;
+    margin-right: 18px;
+    margin-top: 10px;
+}
+
+.cont-next ul img {
+    width: 145px;
+    height: 46px;
+}
+
+.cont-next ul img:hover {
+    box-shadow: 0 0 6px rgba(55, 16, 196, 0.9);
+}
+
+/* 友情链接 */
+.cont-right {
+    float: right;
+    margin-right: 60px;
+    margin-top: 15px;
+}
+
+/* 友情链接内容块中4个内容 */
+#friend-picture li {
+    float: left;
+    width: 90px;
+    height: 110px;
+    margin-right: 30px;
+    margin-top: 15px;
+}
+
+#friend-picture li a {
+    color: #601388;
+}
+
+#friend-picture li img {
+    width: 80px;
+    height: 80px;
+}
+
+/* 首页样式完成 */
+/* 子页面内容背景颜色 */
+.main .cont-content {
+    position: relative;
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+/* 用户当前所在页面路径 */
+.cont-content .path {
+    position: absolute;
+    top: 7px;
+    right: 57px;
+    color: #282424;
+    font-size: 13px;
+}
+
+.cont-content .path a {
+    color: #282424;
+}
+
+.cont-content .path a:hover {
+    color: #c00;
+}
+
+/* 内容页样式, 也包括列表链接点进去正文 */
+.leader,
+.post,
+.student-lists {
+    padding: 10px 54px 30px 10px;
+}
+
+/* 子页面title 样式一样 故改为id='title' */
+.cont-content #title {
+    font-size: 29px;
+    font-weight: 700;
+    color: #207091;
+    text-align: center;
+    margin-bottom: 7px;
+    padding-top: 5px;
+}
+
+.leader-lists .leader-content {
+    margin-bottom: 20px;
+}
+
+.leader-lists .leader-content .title {
+    position: relative;
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #444444;
+}
+
+.leader-lists .leader-content .title::after {
+    display: inline-block;
+    position: absolute;
+    content: ":";
+    width: 0;
+    height: 0;
+    margin-left: 8px;
+}
+
+.leader-lists .leader-content .content {
+    font-size: 15px;
+    color: #423f3f;
+}
+
+.leader .contro {
+    padding-top: 10px;
+    text-indent: 2em;
+    font-size: 15px;
+    color: #444444;
+}
+
+.leader .contro h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 28px;
+    color: #444444;
+}
+
+/* 领导名字列表 */
+.leader-content h3 {
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #444444;
+}
+
+/* 发表时间 */
+.write-time {
+    display: inline-block;
+    margin-top: 25px;
+    margin-right: 20px;
+    font-size: 12px;
+    color: #f39b03;
+    float: right;
+}
+
+/* 师资队伍 */
+.main .post .post-lists .lists .til {
+    position: relative;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 22px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0067f5;
+    background: rgba(211, 211, 228, 0.6);
+}
+
+/* 职称前面小图标 */
+.main .post .post-lists .lists .til:before {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    width: 13px;
+    height: 12px;
+    top: 6px;
+    left: 4px;
+    background: url(../img/arr.gif) no-repeat;
+}
+
+/* 内部列表ul */
+/* 清除浮动, 不清除样式会变乱 */
+.main .post .post-lists .lists {
+    clear: both;
+}
+
+.main .post .post-lists .lists ul {
+    padding-left: 10px;
+}
+
+.main .post .lists ul li {
+    float: left;
+    width: 132px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.post .post-lists .lists ul li a {
+    color: #207091;
+}
+
+.post .post-lists .lists li a:hover {
+    color: rgb(117, 6, 6);
+}
+
+/* 子页面列表样式 */
+/* 与顶部间距 */
+.main .st-list .lists, #employment .list-resc {
+    margin-top: 30px;
+}
+
+/* 列表中ul间距及字体大小 */
+.main .st-list .lists ul,
+#employment .list-resc ul {
+    margin: 7px 15px 15px 15px;
+    font-size: 15px;
+}
+
+.main .st-list .lists ul li,
+#employment .list-resc li {
+    width: 100%;
+    height: 27px;
+    line-height: 27px;
+    padding-left: 10px;
+    position: relative;
+    font-size: 13px;
+}
+
+/* 为每条列表头部加小图标 */
+.main .st-list .lists ul li:before,
+#employment .list-resc li:before {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    width: 8px;
+    height: 8px;
+    top: 10px;
+    left: -5px;
+    background: url(../img/list.jpg) no-repeat;
+}
+
+.main .st-list .lists ul li a,
+#employment .list-resc li a {
+    display: inline-block;
+    width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #111;
+}
+
+/* 鼠标触碰后加下划线 */
+.main .st-list .lists ul li a:hover,
+#employment .list-resc li a:hover {
+    text-decoration: underline;
+    color: #8a0000;
+}
+
+/* 发表时间 */
+.main .st-list .lists ul li .time,
+#employment .list-resc .time {
+    float: right;
+    color: #8d8a8a;
+    margin-right: 20px;
+}
+
+/* 分页 */
+.page {
+    margin-right: 10px;
+    float: right;
+    font-size: 12px;
+}
+
+.page span {
+    padding: 3px 0;
+    margin-right: 2px
+}
+
+.page a {
+    padding: 4px 6px;
+    text-align: center;
+    color: #333;
+    border: 1px solid #a9a1a1;
+    margin-right: -4px;
+}
+.page a:last-child{
+    margin-right: 2px;
+}
+
+.page a:hover {
+    background-color: rgba(32, 112, 145, 0.87);
+    color: #fff;
+    border: 1px solid #207091;
+}
+
+/* 招聘就业首页 */
+
+/* 尾部 */
+#footer {
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    background: #0075d4;
+    margin-top: 15px;
+}
+
+/* 尾部文字 */
+#footer span {
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+#footer a {
+    color: #c2c2c2;
+}
+
+#footer a:hover {
+    color: #e2e2e2;
+}
+/* 返回顶部的按钮 */
+#return_top{
+    position: fixed;
+    bottom: 200px;
+    right: 117px;
+    width: 40px;
+    height: 40px;
+    display: none;
+}
+
+

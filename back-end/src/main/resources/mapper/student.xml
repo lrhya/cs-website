@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.StudentDao">
+    <select id="findAllStudent" resultType="com.jplus.entity.V_student" parameterType="map">
+        SELECT
+        student.id AS id,username,student.name AS name,resume,cid,photo,sign,password,rank,clazz.name AS cname
+        FROM student INNER JOIN clazz
+        ON student.cid = clazz.Id
+        limit #{start},#{size}
+    </select>
+
+    <select id="findStudentById" resultType="com.jplus.entity.V_student" parameterType="int">
+        SELECT
+        student.id AS id,username,student.name AS name,resume,cid,photo,sign,password,rank,clazz.name AS cname
+        FROM student INNER JOIN clazz
+        ON student.cid = clazz.Id
+        WHERE student.id = #{id}
+    </select>
+
+    <select id="findStudentByName" resultType="com.jplus.entity.Student" parameterType="string">
+        SELECT
+        <include refid="student"/>
+        FROM student WHERE name=#{name}
+    </select>
+
+    <select id="getStudentCount" resultType="int">
+        SELECT COUNT(Id) FROM student
+    </select>
+
+    <select id="findStudentSelective" resultType="com.jplus.entity.V_student" parameterType="map">
+        SELECT
+        student.id AS id,username,student.name AS name,resume,cid,photo,rank,clazz.name AS cname
+        FROM student INNER JOIN clazz
+        ON student.cid = clazz.Id
+        <where>
+            <if test="v_student != null">
+                <if test="v_student.name!=null and v_student.name!=''">
+                    student.name LIKE '%${v_student.name}%'
+                </if>
+                <if test="v_student.cid != '' and v_student.cid!=null">
+                    AND cid = #{v_student.cid}
+                </if>
+                <if test="v_student.username!=null and v_student.username!=''">
+                    AND username LIKE '%${v_student.username}%'
+                </if>
+            </if>
+        </where>
+        ORDER BY cid,username limit #{start},#{size}
+    </select>
+
+    <select id="findStuNumSelective" resultType="int" parameterType="com.jplus.entity.Student">
+        SELECT COUNT(id) FROM student
+        <where>
+            <if test="name != null and name != ''">
+                student.name LIKE '%${name}%'
+            </if>
+            <if test="cid != 0">
+                AND cid = #{cid}
+            </if>
+            <if test="username != null and username != ''">
+                AND username LIKE '%${username}%'
+            </if>
+        </where>
+    </select>
+
+    <update id="updateStudent" parameterType="com.jplus.entity.Student">
+        UPDATE student
+        <set>
+            <if test="username!=null">
+                username = #{username},
+            </if>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="resume!=null">
+                resume = #{resume},
+            </if>
+            <if test="cid!=0">
+                cid = #{cid},
+            </if>
+            <if test="photo!=null">
+                photo = #{photo},
+            </if>
+            <if test="sign!=null">
+                sign = #{sign},
+            </if>
+            <if test="password!=null">
+                password = #{password} ,
+            </if>
+            <if test="rank!=0">
+                rank = #{rank}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="addStudent" parameterType="com.jplus.entity.Student">
+        INSERT INTO student(<include refid="student2"/>) VALUES
+        (#{username},#{name},#{cid},#{resume},#{photo},#{sign},#{password},#{rank},#{htmlpath})
+    </insert>
+
+    <delete id="batchDeleteStus" parameterType="int">
+        DELETE FROM student
+        WHERE Id IN
+        <foreach collection="array" item="stuId" open="(" separator="," close=")">
+            #{stuId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteStudent" parameterType="int">
+        DELETE FROM student WHERE id=#{id}
+    </delete>
+
+    <delete id="deleteStuByClz" parameterType="int">
+        DELETE FROM  student WHERE cid=#{id}
+    </delete>
+
+
+    <sql id="student">id,username,name,resume,cid,photo,sign,password,rank,htmlpath</sql>
+    <sql id="student2">username,name,cid,resume,photo,sign,password,rank,htmlpath</sql>
+    <sql id="v_student">id,username,name,resume,cid,photo,sign,password,rank,cname</sql>
+
+</mapper>

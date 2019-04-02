@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.UsersDao">
+
+
+    <select id="findAllUsers" resultType="com.jplus.entity.V_user" parameterType="map">
+        SELECT
+        <include refid="v_users"/>
+        FROM v_user ORDER BY id ASC limit #{start},#{size}
+    </select>
+
+    <select id="findUsersById" resultType="com.jplus.entity.Users" parameterType="int">
+        SELECT
+        <include refid="users"/>
+        FROM users WHERE id=#{id}
+    </select>
+
+    <select id="findUsersByName" resultType="com.jplus.entity.Users" parameterType="string">
+        SELECT
+        <include refid="users"/>
+        FROM users WHERE username=#{username}
+    </select>
+
+    <select id="getUsersCount" resultType="int">
+        SELECT COUNT(Id) FROM users
+    </select>
+
+    <select id="findUsersSelective" resultType="com.jplus.entity.V_user" parameterType="map">
+        SELECT
+        <include refid="v_users"/>
+        FROM v_user
+        <where>
+            <if test="v_user!=null">
+                <if test="v_user.username!=null">
+                    username LIKE '%${v_user.username}%'
+                </if>
+            </if>
+        </where>
+        ORDER BY rank DESC limit #{start},#{size}
+    </select>
+
+    <select id="findUsersSelectiveNum" resultType="int" parameterType="com.jplus.entity.V_user">
+        SELECT COUNT(Id) FROM v_user
+        <where>
+            <if test="username!=null and username!=''">
+                username LIKE '%${username}%'
+            </if>
+        </where>
+    </select>
+
+    <select id="findUsersByNameAndPass" parameterType="com.jplus.entity.V_user" resultType="com.jplus.entity.V_user">
+        SELECT
+        <include refid="v_users"/>
+        FROM v_user WHERE username= #{username} AND password= #{password}
+    </select>
+
+    <update id="updateUsers" parameterType="com.jplus.entity.Users">
+        UPDATE users
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="rank != null">
+                rank = #{rank}
+            </if>
+        </set>
+        WHERE Id = #{Id}
+    </update>
+
+    <insert id="addUsers" parameterType="com.jplus.entity.Users">
+        INSERT INTO users(<include refid="users2"/>) VALUES (#{username},#{password},#{rank})
+    </insert>
+    <delete id="deleteUsers" parameterType="int">
+        DELETE FROM users WHERE id=#{id}
+    </delete>
+
+    <sql id="users">Id,username,password,rank</sql>
+    <sql id="users2">username,password,rank</sql>
+    <sql id="v_users">Id,username,password,rank,jsmc</sql>
+</mapper>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.NewsDao">
+
+    <select id="findNewsPageByNewsType" resultType="com.jplus.entity.V_news" parameterType="map">
+        SELECT
+        news.Id AS id, news.newstype AS typeId,title,composetime,typeName,clicktimes,newstype
+        FROM news INNER JOIN newstype ON news.newstype = newstype.Id
+         WHERE newstype=#{newstype} ORDER BY composetime DESC limit #{start},#{size}
+    </select>
+    <select id="findAllNewsPage" resultType="com.jplus.entity.V_news" parameterType="map">
+        SELECT
+        SELECT
+        news.Id AS id,news.newstype AS typeId, title,composetime,typeName,clicktimes,newstype
+        FROM news INNER JOIN newstype ON news.newstype = newstype.Id
+        <where>
+            <if test="name!=null">
+                name = #{name}
+            </if>
+        </where>
+        ORDER BY newstype limit #{start},#{size}
+    </select>
+
+
+    <select id="getNewsCount" resultType="int">
+        SELECT count(Id) FROM  news
+    </select>
+
+    <select id="getNewsCountByNewsType" resultType="int">
+        SELECT count(Id) FROM  news
+        WHERE newstype = #{newsType}
+    </select>
+
+    <select id="getCount" parameterType="com.jplus.entity.V_news" resultType="int">
+        SELECT count(Id) FROM news
+        <where>
+            <if test="title!=null">
+                title like '%${title}%'
+            </if>
+            <if test="newstype!=null">
+                AND newstype=#{newstype}
+            </if>
+        </where>
+    </select>
+
+    <delete id="batchDeleteNews" parameterType="int">
+        DELETE FROM news
+        WHERE Id IN
+        <foreach collection="array" item="newsId" open="(" separator="," close=")">
+            #{newsId}
+        </foreach>
+    </delete>
+
+    <select id="findNewsById" resultType="com.jplus.entity.V_news" parameterType="int">
+        SELECT
+        news.Id AS id,news.newstype AS typeId,title,composetime,typeName,clicktimes,newstype,content
+        FROM news INNER JOIN newstype ON news.newstype = newstype.Id
+        WHERE news.Id = #{id}
+    </select>
+
+    <select id="findNewsLimitByNewsType" resultType="com.jplus.entity.V_news" parameterType="map">
+       SELECT
+        news.Id AS id,title,composetime,typeName,clicktimes,newstype
+        FROM news INNER JOIN newstype ON news.newstype = newstype.Id
+         WHERE  newstype=#{newsType} ORDER BY composetime DESC limit 0,#{n}
+    </select>
+    <!--按条件查询新闻-->
+    <select id="findNewsSelective" resultType="com.jplus.entity.V_news" parameterType="map">
+        SELECT
+        news.Id AS id,title,composetime,typeName,newstype
+        FROM news INNER JOIN newstype ON news.newstype = newstype.Id
+        <where>
+            <if test="v_news!=null">
+                <if test="v_news.newstype!=null and v_news.newstype!=0">
+                    newstype = #{v_news.newstype}
+                </if>
+                <if test="v_news.title!=null">
+                    AND
+                    title LIKE '%${v_news.title}%'
+                </if>
+            </if>
+        </where>
+        ORDER BY composetime DESC limit #{start},#{size}
+    </select>
+
+    <update id="updateNews" parameterType="com.jplus.entity.News">
+        UPDATE news SET title=#{title}, content=#{content}, newstype=#{newstype} WHERE id = #{id}
+    </update>
+
+    <insert id="addNews" parameterType="com.jplus.entity.News">
+        INSERT INTO news(<include refid="news2"/>) VALUES (#{title},#{content},#{composetime},#{newstype},#{clicktimes})
+    </insert>
+
+    <delete id="deleteNews" parameterType="int">
+        DELETE FROM news WHERE id=#{id}
+    </delete>
+    <delete id="deleteNewsByNewsType" parameterType="int">
+        DELETE FROM news WHERE newstype=#{id}
+    </delete>
+
+    <sql id="news">id,title,content,composetime,newstype,clicktimes</sql>
+    <sql id="news2">title,content,composetime,newstype,clicktimes</sql>
+
+    <sql id="v_news">id,title,content,composetime,typeName,clicktimes,newstype</sql>
+
+
+</mapper>
+

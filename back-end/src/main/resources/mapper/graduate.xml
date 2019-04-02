@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.GraduateDao">
+
+
+    <select id="findAllGraduate" resultType="com.jplus.entity.Graduate" parameterType="map">
+        SELECT
+        <include refid="graduate"/>
+        FROM graduate limit #{start},#{size}
+    </select>
+
+    <select id="getGraduateCount" resultType="int">
+        SELECT count(Id) FROM  Graduate
+    </select>
+
+    <select id="findGraduateById" resultType="com.jplus.entity.Graduate" parameterType="String">
+        SELECT
+        <include refid="graduate"/>
+        FROM graduate WHERE id=#{id}
+    </select>
+
+    <select id="findGraduateSelective" resultType="com.jplus.entity.Graduate" parameterType="com.jplus.entity.Graduate">
+        SELECT
+        <include refid="graduate"/>
+        FROM Graduate
+    </select>
+
+    <update id="updateGraduate" parameterType="com.jplus.entity.Graduate">
+        UPDATE graduate SET imagename=#{imagename}, status=#{status}, describes=#{describes} WHERE id = #{id}
+    </update>
+
+    <update id="updateIndexPic" parameterType="com.jplus.entity.Graduate">
+        UPDATE graduate
+        <set>
+            <if test="imagepath != null">
+                imagepath = #{imagepath},
+            </if>
+            <if test="imagename != null">
+                imagename = #{imagename},
+            </if>
+        </set>
+          WHERE status=4 AND id = #{id}
+    </update>
+
+    <insert id="addGraduate" parameterType="com.jplus.entity.Graduate">
+        INSERT INTO graduate(<include refid="graduate"/>) VALUES
+        (#{id},#{imagename},#{uptime},#{imagepath},#{status},#{describes})
+    </insert>
+
+    <delete id="deleteGraduate" parameterType="String">
+        DELETE FROM graduate WHERE id=#{id}
+    </delete>
+
+    <select id="indexPic" resultType="com.jplus.entity.Graduate">
+        SELECT <include refid="indexPic"></include>
+        FROM graduate WHERE status=4
+        ORDER BY uptime DESC
+    </select>
+    <insert id="addIndexPic" parameterType="com.jplus.entity.Graduate">
+        INSERT into graduate(<include refid="indexPic"/>) VALUES (#{id},#{imagename},#{uptime},#{imagepath},#{status})
+    </insert>
+
+    <select id="indexNum" resultType="int">
+        SELECT COUNT(Id) FROM graduate where status=4
+    </select>
+
+    <sql id="graduate">id,imagename,uptime,imagepath,status,describes</sql>
+    <sql id="indexPic">id,imagename,uptime,imagepath,status</sql>
+    <sql id="indexPic1">imagename,uptime,imagepath,status</sql>
+</mapper>

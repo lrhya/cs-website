@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.TeacherDao">
+
+    <select id="findAllTeacher" resultType="com.jplus.entity.V_teacher" parameterType="map">
+        SELECT
+        <include refid="v_teacher"/>
+        FROM teacher_list_view
+        <where>
+            <if test="v_teacher">
+                <if test="v_teacher.name!=null and v_teacher.name!=''">
+                    name LIKE '%${v_teacher.name}%'
+                </if>
+                <if test="v_teacher.zhichenghao!=null">
+                    AND zhichenghao=#{v_teacher.zhichenghao}
+                </if>
+            </if>
+        </where>
+        ORDER BY zhichenghao
+        limit #{start},#{size}
+    </select>
+
+    <select id="findAllTeacherNum" resultType="int" parameterType="com.jplus.entity.V_teacher">
+        SELECT COUNT(Id) FROM teacher_list_view
+        <where>
+            <if test="name!=null and name!=''">
+                name LIKE '%${name}%'
+            </if>
+            <if test="zhichenghao!=null">
+                AND zhichenghao=#{zhichenghao}
+            </if>
+        </where>
+    </select>
+
+    <select id="findTeacherById" resultType="com.jplus.entity.V_teacher" parameterType="int">
+        SELECT
+        <include refid="v_teacher"/>
+        FROM teacher_list_view WHERE Id=#{Id}
+    </select>
+    <!--教师类型 专任教师、外聘教师-->
+    <select id="findTeacherByType" resultType="com.jplus.entity.Teacher" parameterType="int">
+        SELECT
+        <include refid="teacher"/>
+        FROM teacher WHERE jslx=#{jslx}
+    </select>
+    <select id="findTeacherByName" resultType="com.jplus.entity.V_teacher" parameterType="string">
+        SELECT
+        <include refid="teacher"/>
+        FROM teacher WHERE name=#{name}
+    </select>
+
+    <select id="getTeacherCount" resultType="int">
+        SELECT COUNT(Id) FROM teacher
+    </select>
+
+    <select id="findTeacherSelective" resultType="com.jplus.entity.V_teacher" parameterType="com.jplus.entity.Teacher">
+        SELECT
+        <include refid="v_teacher"/>
+        FROM teacher_list_view
+        <where>
+            <if test="name !=null and name.length()>0">
+                name ={#name}
+            </if>
+            <if test="zhichenghao != null">
+                AND zhichenghao =#{zhichenghao}
+            </if>
+            <if test="jslx !=null">
+                AND jslx =#{jslx}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateTeacher" parameterType="com.jplus.entity.Teacher">
+        UPDATE teacher set teacher.name = #{name},jianjie=#{jianjie},zhichenghao=#{zhichenghao} WHERE Id = #{id}
+    </update>
+
+    <insert id="addTeacher" parameterType="com.jplus.entity.Teacher">
+        INSERT INTO teacher(<include refid="teacher2"/>) VALUES (#{name},#{zhichenghao},#{jslx},#{jianjie})
+    </insert>
+
+    <delete id="deleteTeacher" parameterType="int">
+        DELETE FROM teacher WHERE Id=#{Id}
+    </delete>
+
+    <select id="findTeacherByZC" parameterType="int" resultType="com.jplus.entity.V_teacher">
+        SELECT  teacherlb.Id AS jslx,teacherlb.zhicheng,
+        teacher.name,teacher.Id AS Id
+        FROM
+        teacherlb,teacher
+        WHERE teacherlb.Id=teacher.zhichenghao
+        AND  teacher.zhichenghao=#{zc_id}
+        AND  teacher.jslx=#{lx_id}
+    </select>
+
+    <sql id="teacher">Id,name,jianjie,zhichenghao,jslx</sql>
+    <sql id="teacher2">name,zhichenghao,jslx,jianjie</sql>
+    <sql id="v_teacher">lxmc,id,name,jianjie,zhicheng,zhichenghao,jslx</sql>
+
+    <!--<resultMap id="ZcAndTeacher" type="com.jplus.entity.TeacherType">-->
+    <!--&lt;!&ndash;教师职称信息&ndash;&gt;-->
+    <!--<id column="id" property="id"></id>-->
+    <!--<result column="zhicheng" property="zhicheng"></result>-->
+    <!--&lt;!&ndash;教师详细表&ndash;&gt;-->
+    <!--<collection property="teachers" ofType="com.jplus.entity.Teacher">-->
+    <!--<id column="t_id" property="id"></id>-->
+    <!--<result column="name" property="name"></result>-->
+    <!--</collection>-->
+    <!--</resultMap>-->
+    <!--<select id="findTeacherByZC" resultMap="ZcAndTeacher" parameterType="int">-->
+    <!--SELECT  teacherlb.Id t_id,teacherlb.zhicheng,-->
+    <!--teacher.name-->
+    <!--FROM-->
+    <!--teacherlb,teacher-->
+    <!--WHERE teacherlb.Id=teacher.zhichenghao-->
+    <!--AND  teacher.zhichenghao=#{0}-->
+    <!--</select>-->
+</mapper>

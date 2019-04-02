@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.ResourceDao">
+    <select id="findAllResource" resultType="com.jplus.entity.V_resource" parameterType="map">
+        SELECT
+        resource.Id AS id,filename AS filePath,compostime,ispost AS isShow,typename
+        FROM resource JOIN newstype ON resource.lb = newstype.Id
+        <where>
+            <if test="resource !=null ">
+                <if test="resource.ispost != null">
+                    ispost = #{resource.ispost}
+                </if>
+                <if test="resource.lb != null">
+                    AND lb = #{resource.lb}
+                </if>
+                <!--<if test="resource.filename != null">-->
+                    <!--AND filename LIKE '%${resource.filename}%'-->
+                <!--</if>-->
+            </if>
+        </where>
+        ORDER BY resource.lb,compostime DESC
+        limit #{start}, #{size}
+    </select>
+
+    <select id="getResourceCount" resultType="int" parameterType="com.jplus.entity.Resource">
+        SELECT count(Id) FROM resource
+        <where>
+            <if test="ispost != null">
+                ispost = #{ispost}
+            </if>
+            <if test="lb != null">
+                AND lb = #{lb}
+            </if>
+            <if test="filename != null">
+                AND filename LIKE '%${filename}%'
+            </if>
+        </where>
+    </select>
+
+    <select id="findResourceById" resultType="com.jplus.entity.Resource" parameterType="int">
+        SELECT
+        id,filename AS filePath,compostime,ispost,lb
+        FROM resource WHERE Id=#{id}
+    </select>
+
+    <select id="findResourceSelective" resultType="com.jplus.entity.Resource" parameterType="com.jplus.entity.Resource">
+        SELECT
+        <include refid="resource"/>
+        FROM resource
+    </select>
+
+    <update id="updateResource" parameterType="com.jplus.entity.Resource">
+        UPDATE resource
+        <set>
+            <if test="filePath != null">
+                filename = #{filePath},
+            </if>
+            <if test="ispost != null">
+                ispost=#{ispost},
+            </if>
+            <if test="lb != lb">
+                lb=#{lb},
+            </if>
+        </set>
+        WHERE Id = #{id}
+    </update>
+    <update id="isShow" parameterType="com.jplus.entity.Resource">
+        UPDATE resource SET ispost=#{ispost} WHERE Id = #{id}
+    </update>
+    <insert id="addResource" parameterType="com.jplus.entity.Resource">
+        INSERT INTO resource(<include refid="resource2"/>) VALUES (#{filename},#{compostime}, #{ispost},#{lb})
+    </insert>
+
+    <delete id="deleteResource" parameterType="int">
+        DELETE FROM resource WHERE Id=#{id}
+    </delete>
+
+    <sql id="resource">id,filename,compostime,ispost,lb</sql>
+    <sql id="resource2">filename,compostime,ispost,lb</sql>
+
+</mapper>

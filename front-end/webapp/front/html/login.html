@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--  登录页面, 这个页面一般是覆盖在所点击页面的上方, 不会显得很单调  -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学院网站招生就业</title>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+    <div id="loginHidd">
+        <div class="LoCenter">
+            <form action="" method="post" class="form">
+                <ul>
+                    <li>用户名:<input type="text" name="name" size="14" class="right-con" /></li>
+                    <li>密码:<input type="password" name="password" size="14" class="right-con" /></li>
+                    <li>验证码:<input type="text" size="5" class="left-con"><span class="code" />1234</span></li>
+                    <li>
+                        <input type="radio" name="identity" value="用人单位" />用人单位
+                        <input type="radio" name="identity" value="毕业生" />毕业生
+                        <input type="radio" name="identity" value="管理员" checked="checked" />管理员
+                    </li>
+                    <li class="subm"><input type="submit" value="登录">
+                        <input type="reset" value="重置">
+                    </li>
+                </ul>
+            </form>
+            <div class="close">
+                <a href="javascript:void(0)">x</a>
+            </div>
+
+        </div>
+    </div>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+</body>
+</html>

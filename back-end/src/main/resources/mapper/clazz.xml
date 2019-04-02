@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.ClazzDao">
+    <select id="findAllClazz2" resultType="com.jplus.entity.Clazz" parameterType="map">
+        SELECT
+        Id,clazz.name
+        FROM clazz
+    </select>
+
+    <select id="findAllClazz" resultType="com.jplus.entity.Clazz" parameterType="map">
+       SELECT
+        Id,clazz.name,entrancetime,proname,boy,girl
+        FROM clazz
+        <where>
+            <if test="class != null">
+                <if test="class.name!=null">
+                    clazz.name LIKE '%${class.name}%'
+                </if>
+                <if test="class.entrancetime!=null">
+                    AND entrancetime =#{class.entrancetime}
+                </if>
+            </if>
+        </where>
+        ORDER BY clazz.name
+        limit #{start},#{size}
+    </select>
+    <!--&lt;!&ndash;模糊查询班级类型&ndash;&gt;-->
+    <!--<select id="findClazzSelective" resultType="com.jplus.entity.Clazz" parameterType="map">-->
+        <!--SELECT-->
+        <!--Id,clazz.name,entrancetime,proname,boy,girl-->
+        <!--FROM clazz-->
+        <!--<where>-->
+            <!--<if test="class != null">-->
+                <!--<if test="class.name!=null">-->
+                    <!--name LIKE '%${class.name}%'-->
+                <!--</if>-->
+                <!--<if test="class.entrancetime!=null">-->
+                    <!--AND entrancetime=#{class.entrancetime}-->
+                <!--</if>-->
+            <!--</if>-->
+        <!--</where>-->
+        <!--limit #{start},#{size}-->
+    <!--</select>-->
+
+    <select id="findClazzById" resultType="com.jplus.entity.Clazz" parameterType="int">
+        SELECT
+        <include refid="clazz"/>
+        FROM clazz WHERE id=#{id}
+    </select>
+
+    <select id="findClazzByName" resultType="com.jplus.entity.Clazz" parameterType="string">
+        SELECT
+        <include refid="clazz"/>
+        FROM clazz WHERE name=#{name}
+    </select>
+
+    <select id="getClazzCount" resultType="int" parameterType="com.jplus.entity.Clazz">
+        SELECT COUNT(Id) FROM clazz
+        <where>
+                <if test="name != null">
+                    name LIKE '%${name}%'
+                </if>
+                <if test="entrancetime!=null">
+                    AND entrancetime=#{entrancetime}
+                </if>
+        </where>
+    </select>
+
+
+    <update id="updateClazz" parameterType="com.jplus.entity.Clazz">
+        UPDATE clazz
+        <set>
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="proname != null">
+                proname = #{proname},
+            </if>
+            <if test="boy != 0">
+                boy = #{boy},
+            </if>
+            <if test="girl != 0">
+                girl = #{girl},
+            </if>
+            <if test="ttscheme!=null">
+                ttscheme = #{ttscheme} ,
+            </if>
+            <if test="entrancetime != null">
+                entrancetime = #{entrancetime}
+            </if>
+        </set>
+        WHERE Id = #{Id}
+    </update>
+
+    <insert id="addClazz" parameterType="com.jplus.entity.Clazz">
+        INSERT INTO clazz(<include refid="clazz2"/>) VALUES
+        (#{name},#{entrancetime},#{proname},#{ttscheme},#{boy},#{girl})
+    </insert>
+
+    <delete id="deleteClazz" parameterType="int">
+        DELETE FROM clazz WHERE Id=#{Id}
+    </delete>
+
+    <sql id="clazz">Id,clazz.name,entrancetime,proname,ttscheme,boy,girl</sql>
+    <sql id="clazz2">clazz.name,entrancetime,proname,ttscheme,boy,girl</sql>
+</mapper>

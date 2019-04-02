@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.TeacherTypeDao">
+    <select id="findAllTeacherType" resultType="com.jplus.entity.TeacherType">
+        SELECT
+        <include refid="teacherType"/>
+        FROM teacherlb
+    </select>
+
+    <select id="findTeacherTypeById" resultType="com.jplus.entity.TeacherType" parameterType="int">
+        SELECT
+        <include refid="teacherType"/>
+        FROM teacherlb WHERE id=#{id}
+    </select>
+
+    <select id="findTeacherZC" parameterType="map" resultType="com.jplus.entity.TeacherType">
+        SELECT
+        <include refid="teacherType"/>
+        FROM teacherlb
+        <where>
+            <if test="teacherType!=null">
+                <if test="teacherType.id!=null and teacherType.id!=''">
+                    id=#{teacherType.id}
+                </if>
+                <if test="teacherType.zhicheng!=null and teacherType.zhicheng!=''">
+                    AND zhicheng LIKE '%${teacherType.zhicheng}%'
+                </if>
+            </if>
+        </where>
+        ORDER BY id ASC limit #{start},#{size}
+    </select>
+
+    <select id="findTeacherZCNum" parameterType="com.jplus.entity.TeacherType" resultType="int">
+        SELECT COUNT(Id) FROM teacherlb
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="zhicheng!=null and zhicheng!=''">
+                AND zhicheng LIKE '%${zhicheng}%'
+            </if>
+        </where>
+    </select>
+
+    <select id="NumZc" resultType="int">
+        SELECT  COUNT(*) FROM  teacherlb
+    </select>
+
+    <insert id="addTeacherZc" parameterType="com.jplus.entity.TeacherType">
+        INSERT into teacherlb(zhicheng) VALUE (#{zhicheng})
+    </insert>
+
+    <update id="updateTeacherZc" parameterType="com.jplus.entity.TeacherType">
+        UPDATE teacherlb SET zhicheng=#{zhicheng} WHERE
+        id=#{id}
+    </update>
+
+    <delete id="delTeacherZc" parameterType="int">
+        DELETE FROM  teacherlb WHERE
+        Id=#{id}
+    </delete>
+
+    <sql id="teacherType">Id,zhicheng</sql>
+</mapper>

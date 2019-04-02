@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.StaticNewsDao">
+    <select id="findAllStaticNews" resultType="com.jplus.entity.V_news">
+        SELECT
+        <include refid="staticNews"/>
+        FROM staticnews ORDER BY composetime
+    </select>
+
+    <select id="findStaticNewsById" resultType="com.jplus.entity.StaticNews" parameterType="int">
+        SELECT
+        <include refid="staticNews"/>
+        FROM staticnews WHERE id=#{id}
+    </select>
+
+    <select id="findStaticNewsByNewsType" resultType="com.jplus.entity.StaticNews" parameterType="int">
+        SELECT
+        <include refid="staticNews"/>
+        FROM staticnews WHERE newstype=#{newsType}
+    </select>
+
+    <update id="updateStaticNews" parameterType="com.jplus.entity.StaticNews">
+        UPDATE staticnews SET content=#{content}, typename=#{typename} WHERE Id = #{id}
+    </update>
+
+    <insert id="addStaticNews" parameterType="com.jplus.entity.StaticNews">
+        INSERT INTO staticnews(<include refid="staticNews2"/>) VALUES
+        (#{content},#{composetime},#{newstype},#{typename})
+    </insert>
+
+    <delete id="deleteStaticNews" parameterType="int">
+        DELETE FROM staticnews WHERE Id=#{id}
+    </delete>
+    <!--hl-->
+    <select id="findStaticNews" parameterType="map" resultType="com.jplus.entity.StaticNews">
+        SELECT *FROM staticnews
+        <where>
+            <if test="typename!=null and typename!=''">
+                typename LIKE '%${typename}%'
+            </if>
+        </where>
+        ORDER BY composetime DESC limit #{start},#{size}
+    </select>
+
+    <select id="findStaticNewsNum" parameterType="map" resultType="int">
+        SELECT COUNT(Id) FROM staticnews
+        <where>
+            <if test="typename!=null and typename!=''">
+                typename LIKE '%${typename}%'
+            </if>
+        </where>
+    </select>
+
+    <update id="editStaticNews" parameterType="com.jplus.entity.StaticNews">
+        UPDATE staticnews SET content=#{content},typename=#{typename}
+        WHERE id=#{id}
+    </update>
+
+    <sql id="staticNews">Id,content,composetime,newstype,typename</sql>
+    <sql id="staticNews2">content,composetime,newstype,typename</sql>
+
+</mapper>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.RoleDao">
+    <select id="findAllRole" resultType="com.jplus.entity.Role">
+        SELECT
+        <include refid="role"/>
+        FROM roll
+    </select>
+
+    <select id="findRoleById" resultType="com.jplus.entity.Role" parameterType="int">
+        SELECT
+        <include refid="role"/>
+        FROM roll WHERE id=#{id}
+    </select>
+
+    <sql id="role">Id,jsmc</sql>
+</mapper>

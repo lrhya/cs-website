@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.JslxDao">
+    <select id="findAllJslx" resultType="com.jplus.entity.Jslx">
+        SELECT
+        <include refid="jslx"/>
+        FROM teachertype
+    </select>
+
+    <select id="findJslxById" resultType="com.jplus.entity.Jslx" parameterType="int">
+        SELECT
+        <include refid="jslx"/>
+        FROM teachertype WHERE id=#{id}
+    </select>
+    <sql id="jslx">Id,lxmc</sql>
+
+    <insert id="addJslx" parameterType="com.jplus.entity.Jslx">
+        INSERT INTO teachertype (lxmc) VALUE (#{lxmc})
+    </insert>
+
+    <select id="findJslxSelective" parameterType="map" resultType="com.jplus.entity.Jslx">
+        SELECT * FROM teachertype
+        <where>
+            <if test="jslx!=null">
+                <if test="jslx.id!=null and jslx.id!=0">
+                    id=#{jslx.id}
+                </if>
+                <if test="jslx.lxmc!=null and jslx.lxmc!=''">
+                    AND lxmc LIKE '%${jslx.lxmc}%'
+                </if>
+            </if>
+        </where>
+        ORDER BY id ASC limit #{start},#{size}
+    </select>
+
+    <select id="findJslxSelectiveNum" parameterType="com.jplus.entity.Jslx" resultType="int">
+        SELECT COUNT(Id) FROM teachertype
+        <where>
+            <if test="id!=null and id!=0">
+                id=#{id}
+            </if>
+            <if test="lxmc!=null and lxmc!=''">
+                AND lxmc LIKE '%${lxmc}%'
+            </if>
+        </where>
+    </select>
+
+    <delete id="delJslx" parameterType="int">
+        DELETE FROM teachertype WHERE
+        id=#{id}
+    </delete>
+
+    <update id="editJslx" parameterType="com.jplus.entity.Jslx">
+        UPDATE teachertype SET
+        <if test="lxmc!=null">
+            lxmc=#{lxmc}
+        </if>
+        WHERE Id=#{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--后台管理登录界面-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+    body{
+        background: url('../img/admin.png')
+    }
+</style>
+<body>
+    <div id="admin">
+        <div class="adminUser">计算机科学与技术后台管理系统</div>
+        <form action="" name="login" method="post">
+            <ul class="adLogin">
+            <li>
+                用户名 : 
+                <input type="text" name="username" id="user" />
+            </li>
+            <li>
+                密　码 :
+                <input type="password" name="password" id="pwd" />
+            </li>
+            <li class="code">
+               验证码 :
+                <input type="text" style="width:35px;vertical-align: middle;" name="yzm" id="cod" size="4" maxlength="4"/> 
+                <span><img src="../img/btn.png" onclick="" title ="看不清，点击刷新"/>    </span>
+            </li>  
+            <li id="but">
+                    <input type="submit" value="登录">
+                    <input type="submit" value="返回">
+            </li>          
+        </ul>
+        </form>
+    </div>
+</body>
+</html>

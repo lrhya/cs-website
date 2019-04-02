@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jplus.dao.NewsTypeDao">
+    <select id="findAllNewsType" resultType="com.jplus.entity.NewsType">
+        SELECT
+        <include refid="NewsType"/>
+        FROM newstype
+    </select>
+
+    <select id="findNewsTypeById" resultType="com.jplus.entity.NewsType" parameterType="int">
+        SELECT
+        <include refid="NewsType"/>
+        FROM newsType WHERE id=#{id}
+    </select>
+
+    <select id="findNewsTypeLimit" parameterType="map" resultType="com.jplus.entity.NewsType">
+        SELECT
+        <include refid="NewsType"/>
+        FROM newsType
+        limit #{start},#{size}
+    </select>
+
+    <select id="findNewsTypeNum" resultType="int">
+        SELECT COUNT(Id) FROM newstype
+    </select>
+
+    <update id="updateNewsType" parameterType="com.jplus.entity.NewsType">
+        UPDATE newstype SET
+        typename=#{typename}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteNewsType" parameterType="int">
+        DELETE  FROM  newstype
+        WHERE  Id=#{id}
+    </delete>
+
+    <insert id="addNewsType" parameterType="com.jplus.entity.NewsType">
+        INSERT  INTO newstype
+        (typename)
+        VALUE (#{typename})
+    </insert>
+
+    <sql id="NewsType">Id,typename</sql>
+
+</mapper>

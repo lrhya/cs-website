@@ -1,0 +1,1367 @@
+@charset "UTF-8";
+    /*
+    * @description: 计算机科学与技术前台全部页面样式
+    * @author: lan
+    * @date: 2017-09-30
+    */
+/*公共样式*/
+* {
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family:  Helvetica Neue,Helvetica,PingFang sans-serif, "微软雅黑";
+    font-size: 14px;
+    color: #333;
+}
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none!important;
+}
+
+input,
+textarea {
+    outline: none;
+}
+img {
+    border: none;
+}
+.page{
+    margin-right: 15px!important;
+    /*border-collapse: collapse;*/
+}
+.page .goPage{
+    display: inline-block;
+    width: 25px;
+}
+.page a,.page span{
+    padding: 8px 12px;
+    border: 1px solid #e2e2e2;
+    margin: 6px -2px;
+    color: #333;
+}
+.page a:nth-last-child(1){
+    margin: 6px 2px 0 -2px;
+}
+.page a:hover,.page a:visited{
+    background-color: #1E9FFF;
+}
+.fr{
+    float: right;
+}
+.clearFix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.info{
+    text-align: center;
+    padding: 30px 200px;
+}
+#top {
+    height: 32px;
+    line-height: 32px;
+    background-color: #2F4056;
+    min-width: 320px;
+    padding: 0 110px 0 25px;
+}
+
+/* 灰色分割线 */
+.color-gray {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px dotted #555;
+}
+/*
+*首页和招聘就业内容页
+*/
+.menu-style #content,
+.main #content,
+#employment #content {
+    min-height: 594px;
+    padding-bottom: 10px;
+}
+/* 菜单 */
+.main #content .menu,
+#employment #content .menu {
+    float: left;
+    width: 18%;
+    margin: 10px 0 0 5px;
+    padding-bottom: 10px;
+    z-index: 999;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: 0 0 3px #ccc;
+    background: #ffffff;
+}
+
+
+.main #content .nav-list,
+#employment #content .nav-list {
+    background: #ffffff;
+}
+
+
+.main #content .nav-list .show,
+#employment #content .nav-list .show {
+    position: relative;
+    box-shadow: 0 0 2px #c2b9b9;
+}
+
+.main #content .nav-list .show.active {
+    color: #fff;
+    background: #008cfd;
+}
+.main #content .nav-list .show:hover,
+#employment #content .nav-list .show:hover{
+    background: #008cfd;
+    color: #fff;
+}
+.main #content .nav-list .show>a{
+    display: inline-block;
+    padding: 7px 21% 7px 19%;
+    letter-spacing: 11px;
+    font-weight: 900;
+    font-size: 17px;
+    color: rgb(85, 26, 139);
+}
+#employment #content .nav-list .show>a {
+    display: inline-block;
+    padding: 7px 0;
+    padding-left: 23%;
+    padding-right: 18%;
+    letter-spacing: 11px;
+    font-weight: 900;
+    font-size: 17px;
+    color: rgb(85, 26, 139);
+}
+
+/* 菜单中鼠标移上a */
+.main #content .nav-list .show>a:hover,
+#employment #content .nav-list .show>a:hover {
+    color: #ffffff;
+}
+
+
+/*首页中右侧内容页公共样式  */
+.picture,
+.cont-a,
+.cont-b,
+.cont-c,
+.cont-d{
+    width: 48%;
+    height: 260px;
+    margin: 10px 4px;
+    box-shadow: 0 0 3px #aaa;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+
+.picture:hover,
+.cont-a:hover,
+.cont-b:hover,
+.cont-c:hover,
+.cont-d:hover{
+    box-shadow: 0 0 7px rgba(0, 0, 210, 0.6);
+}
+
+
+.picture .title,
+.cont-a .title,
+.cont-b .title,
+.cont-c .title,
+.cont-d .title{
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 2px solid #dd0000;
+    background: #ecf2f4;
+    font-weight: 500;
+    font-size: 15px;
+    color: #8a0000;
+}
+
+.cont-a .title .label,
+.cont-b .title .label,
+.cont-c .title .label,
+.cont-d .title .label{
+    float: left;
+    padding-left: 6px;
+}
+
+.cont-a .title .more,
+.cont-b .title .more,
+.cont-c .title .more,
+.cont-d .title .more{
+    float: right;
+    position: relative;
+    padding-right: 50px;
+    font-size: 13px;
+}
+
+
+.cont-a .title .more::after,
+.cont-b .title .more::after,
+.cont-c .title .more::after,
+.cont-d .title .more::after{
+    content: '>>';
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    top: -1px;
+}
+
+
+.cont-a ul,
+.cont-b ul,
+.cont-c ul,
+.cont-d ul{
+    margin: 7px 15px 15px 15px;
+    font-size: 15px;
+}
+
+
+.cont-a ul li,
+.cont-b ul li,
+.cont-c ul li,
+.cont-d ul li{
+    width: 100%;
+    height: 27px;
+    line-height: 27px;
+    padding-left: 10px;
+    position: relative;
+}
+
+
+.cont-a ul li:before,
+.cont-b ul li:before,
+.cont-c ul li:before,
+.cont-d ul li:before{
+    position: absolute;
+    display: inline-block;
+    content: '';
+    width: 8px;
+    height: 8px;
+    top: 10px;
+    left: -5px;
+    background: url("../img/list.jpg") no-repeat;
+}
+
+
+.cont-a ul li a,
+.cont-b ul li a,
+.cont-c ul li a,
+.cont-d ul li a{
+    display: inline-block;
+    width: 66%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #111;
+}
+
+
+.cont-a ul li a:hover,
+.cont-b ul li a:hover,
+.cont-c ul li a:hover,
+.cont-d ul li a:hover{
+    text-decoration: underline;
+    color: #8a0000;
+}
+
+
+.cont-a ul li .time,
+.cont-b ul li .time,
+.cont-c ul li .time,
+.cont-d ul li .time {
+    float: right;
+    color: #8d8a8a;
+}
+
+/* 首页 */
+.main {
+    margin: 5px auto;
+    width: 1176px;
+    min-width: 800px;
+    border: 0 solid #ccc;
+    box-shadow: 0 0 3px #aaaaaa;
+    border-radius: 8px;
+    background: #f9f9f8;
+}
+/* 头部 */
+.main #header {
+    width: 100%;
+    height: 130px;
+    background-image: url(../img/1.png);
+    border-radius: 3px;
+}
+/* 内容侧边导航栏中小菜单 */
+.main #content .nav-list .show .fade-lists {
+    display: none;
+}
+
+.main #content .nav-list .show .fade-lists.active {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: -20px;
+    z-index: 1000;
+    width: 74px;
+    padding: 5px;
+    background: #ecf2f4;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.main .show .fade-lists.active li a {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+.main .show .fade-lists.active li a:hover {
+    background: #008cfd;
+    color: #fff;
+    border-radius: 10px
+}
+/* 侧边导航栏下面四个小图标 */
+.main #content .menu .four {
+    height: 25%;
+    width: 90%;
+    margin-top: 10px;
+    padding-left: 31px;
+    font-size: 13px;
+}
+.four a{
+    color: #601388;
+}
+
+.main #content .menu .four ul li {
+    float: left;
+    width: 71px;
+    height: 72px;
+}
+.four img{
+    width: 40px;
+    height: 40px;
+}
+/* 首页和招聘就业内容页右侧公共样式 */
+.main  #content .cont,
+#employment #content .cont{
+    float: right;
+    width: 79%;
+    min-height: 560px;
+    padding-bottom: 10px;
+    margin: 10px 5px 10px 10px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #aaa;
+    box-shadow: 0 1px 3px #cccccc;
+}
+/* 轮播图 */
+.main  .picture {
+    position: relative;
+    float: left;
+    border-radius: 5px;
+}
+
+.main .picture img{
+    width: 446px;
+    height: 260px;
+    border-radius: 7px;
+}
+/* 轮播图下方覆盖滚动数字 */
+.p-background{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 31px;
+    border-radius: 0 0 7px 7px;
+    background: rgba(186, 186, 186, 0.35);
+    z-index: 199;
+}
+.main .picture ul{
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    z-index: 200;
+}
+.picture ul li{
+    float: left;
+    margin-right: 5px;
+    padding: 2px 6px;
+}
+.picture ul li.active{
+    border-radius: 50%;
+    color: #fff;
+    background: #332C2C;
+}
+.main  .cont-a {
+    float: right;
+}
+
+.main  .cont-b {
+    float: left;
+}
+
+.main  .cont-c {
+    float: right;
+}
+
+.main  .student-lists {
+    padding: 0 30px;
+}
+/* 首页内容右侧列表中title */
+.main  .student-lists .title,
+#employment .lists-resc .title,
+.left-class h2 {
+    display: inline-block;
+    padding: 5px 17px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 8px;
+    margin: 6px 10px 0 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fefeff;
+    background: #006df7;
+}
+
+.main  .st-list .lists,
+#employment .list-resc {
+    margin-top: 30px;
+}
+/* 首页中内容页右侧 */
+.main .st-list .lists ul ,
+#employment .list-resc ul {
+    margin: 7px 15px 15px 15px;
+    font-size: 15px;
+}
+
+.main .st-list .lists ul li ,
+#employment .list-resc li {
+    width: 100%;
+    height: 27px;
+    line-height: 27px;
+    padding-left: 10px;
+    position: relative;
+    font-size: 13px;
+}
+
+.main .st-list .lists ul li:before ,
+#employment .list-resc li:before {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    width: 8px;
+    height: 8px;
+    top: 10px;
+    left: -5px;
+    background: url("../img/reddot.jpg") no-repeat;
+}
+
+.main .st-list .lists ul li a,
+#employment .list-resc li a {
+    display: inline-block;
+    width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #111;
+}
+
+.main .st-list .lists ul li a:hover ,
+#employment .list-resc li a:hover {
+    text-decoration: underline;
+    color: #8a0000;
+}
+
+.main .st-list .lists ul li .time ,
+#employment .list-resc .time {
+    float: right;
+    color: #8d8a8a;
+    margin-right: 20px;
+}
+/* -----------首页样式结束---------- */
+
+/* pages */
+.main  .student-lists .pages ,
+#employment .lists-resc .pages ,
+.right-class .pages {
+    clear: both;
+    margin-top: 15px;
+    font-size: 13px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.main  .student-lists .pages a ,
+#employment .lists-resc .pages a,
+.right-class .pages a {
+    color: #444;
+    margin-left: 15px;
+    padding: 1px 4px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.main  .student-lists .pages a:hover ,
+#employment .lists-resc .pages a:hover ,
+.right-class .pages a:hover{
+    color: #D1574A;
+}
+
+.main  .student-lists .pages span:nth-child(n+6),
+.main  .student-lists .pages select,
+#employment .lists-resc .pages span:nth-child(n+6),
+#employment .lists-resc .pages select ,
+.right-class .pages span:nth-child(n+6),
+.right-class .pages select  {
+    margin-left: 15px;
+}
+/*  */
+.main  .post {
+    margin-top: 15px;
+    padding: 0 30px;
+}
+
+.main  .post .post-title {
+    font-size: 21px;
+    font-weight: 700;
+    color: #207091;
+}
+
+.main  .post .post-lists .lists {
+    clear: both;
+}
+
+.main  .post .post-lists .lists .til {
+    position: relative;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 22px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0067f5;
+    background: rgba(211, 211, 228, 0.6);
+}
+
+.main  .post .post-lists .lists .til:before {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    width: 13px;
+    height: 12px;
+    top: 6px;
+    left: 4px;
+    background: url("../img/arr.gif") no-repeat;
+}
+
+.main  .post .post-lists .lists ul {
+    padding-left: 10px;
+}
+
+.main  .post .post-lists .lists ul li {
+    float: left;
+    width: 132px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.post .post-lists .lists ul li a {
+    color: #207091;
+}
+
+.post .post-lists .lists ul li a:hover {
+    color: #8a0000;
+}
+/* 首页分页面 -- 领导 */
+.leader {
+    margin-top: 15px;
+    padding: 0 30px;
+}
+
+.leader .leader-title {
+    font-size: 21px;
+    font-weight: 700;
+    color: #207091;
+    text-align: center;
+}
+
+.leader-lists .leader-content {
+    margin-bottom: 20px;
+}
+
+.leader-lists .leader-content .title {
+    position: relative;
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #444444;
+}
+.leader-content h2,
+.leader-content h3{
+    margin: 10px 0;
+}
+.leader-content h3{
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #444444;
+}
+
+.leader-lists .leader-content .title::after {
+    display: inline-block;
+    position: absolute;
+    content: ":";
+    width: 0;
+    height: 0;
+    margin-left: 8px;
+}
+
+.leader-lists .leader-content .content {
+    font-size: 15px;
+    color: #423f3f;
+}
+
+.leader .contro {
+    padding-top: 10px;
+    text-indent: 2em;
+    font-size: 15px;
+    color: #444444;
+}
+
+.leader .contro h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 28px;
+    color: #444444;
+}
+
+.contro .inscrS {
+    float: right;
+}
+
+.inscrS .inscr {
+    margin: 10px 0;
+}
+
+.write-time {
+    display: inline-block;
+    float: right;
+    margin-top: 25px;
+    font-size: 12px;
+    color: #da7a16;
+}
+/*首页右侧列表 链接点进去详情页*/
+.line{
+    color: #e39a41;
+    font-size: 13px;
+    margin: 28px 0;
+}
+.put-time{
+    margin-left: 236px;
+}
+.click-count{
+    margin-left: 100px;
+}
+/* ---尾部footer------ */
+.main #footer {
+    clear: both;
+}
+/* 校企合作 */
+.main #footer  .box {
+    padding-left: 10px;
+    height: 126px;
+    margin: 0 8px 0 8px;
+    border: 1px solid #ffffff;
+    background-color: #ecf2f4;
+    box-shadow: 0 0 5px #aaaaaa;
+}
+
+.main #footer  .box:hover {
+    box-shadow: 0 0 7px rgba(0, 0, 210, 0.6);
+}
+
+.main #footer  .box .til {
+    padding: 5px 0 5px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #17178b;
+}
+
+.main #footer  .box ul li {
+    float: left;
+    margin-right: 9px;
+}
+/* 尾部页面img */
+.main #footer  .box ul li img {
+    width: 180px;
+    height: 65px;
+    border: 1px solid #aaaaaa;
+    box-shadow: 0 0 5px rgba(100, 100, 100, 0.5);
+}
+
+.main #footer .box img:hover {
+    box-shadow: 0 0 5px rgba(100, 100, 100, 0.9);
+}
+
+.main #footer .box .dec {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+}
+
+.main #footer .manage {
+    clear: both;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.main #footer .manage a {
+    color: #aa0000;
+}
+/* --尾部样结束-- */
+/* ----招聘就业首页------- */
+/* 
+*   分4部分 header title content footer
+*/
+#employment {
+    margin: 10px auto;
+    width: 1176px;
+    border: 0 solid #ccc;
+    box-shadow: 0 0 3px #aaaaaa;
+    border-radius: 8px;
+    background-color: #f9f9f8;
+}
+/* header */
+#employment #header {
+    width: 100%;
+    height: 130px;
+    background: url('../img/rmem.jpg') no-repeat;
+    border-radius: 8px;
+}
+/* title */
+#employment #title {
+    position: relative;
+    margin: 10px 10px 0 5px;
+    box-shadow: 0 0 3px #aaaaaa;
+    background: #ffffff;
+}
+
+#employment #title:hover {
+    box-shadow: 0 0 7px rgba(0, 0, 210, 0.6);
+}
+
+#employment #title .text {
+    display: inline;
+    padding-left: 50px;
+}
+
+#employment #title .text a {
+    color: #00f;
+    font-weight: 700;
+    position: relative;
+}
+
+#employment #title .text a:hover {
+    color: rgba(230, 0, 0, 0.5);
+}
+
+#employment #title .text a::after {
+    display: inline-block;
+    content: ':';
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+#employment #title #move {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 20px;
+    width: 250px;
+    overflow: hidden;
+    color: #333;
+}
+/* 招聘就业首页中横向滚动的文字 */
+#moven{
+    position: absolute;
+}
+/* -- 招聘就业菜单栏下方登录 -- */
+#employment .login .title {
+/*<<<<<<< Updated upstream
+!*<<<<<<< Updated upstream*!
+    background: url('../img/head14.jpg');
+    width: 99%;
+    height: 49px;*/
+/*=======*/
+    /*background: url(../img/head14.jpg);*/
+    /*width: 203px;*/
+    /*height: 43px;*/
+/*>>>>>>> Stashed changes*/
+    background: url(../img/head14.jpg);
+    width: 209px;
+    height: 43px;
+    margin-top: 3px;
+    border-radius: 15px 15px 0 0;
+}
+/* 登录 */
+#employment .f-style {
+    background: linear-gradient(to bottom, #d7ecd2, #707cd5);
+    width: 99%;
+    padding-bottom: 20px;
+    border-radius: 0 0 8px 8px;
+}
+
+#employment .f-style  ul {
+    padding-bottom: 20px;
+    background: linear-gradient(top, #d7ecd2, #707cd5);
+}
+
+#employment .f-style li {
+    position: relative;
+    height: 25px;
+    line-height: 25px;
+    padding-top: 12px;
+    padding-left: 16px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#employment .f-style input {
+    outline: none;
+    border-radius: 2px;
+}
+
+#employment .f-style input:focus {
+    border: 1px solid rgba(0, 0, 230, 0.5);
+    box-shadow: 0 0 3px rgba(0, 0, 230, 0.8);
+}
+
+#employment .f-style .code {
+    margin: 10px;
+    padding: 3px 4px;
+    /*border: 1px solid #111;*/
+    /*background: #f00;*/
+}
+/* 控制输入框input位置 */
+#employment .f-style .right-con {
+    position: absolute;
+    top: 15px;
+    right: 9px;
+}
+
+#employment .f-style .left-con {
+    margin-left: 10px;
+}
+/* 提交按钮 */
+#employment .f-style .subm input,
+#employment .f-style .subm input:focus {
+    padding: 5px 7px;
+    margin: 5px 20px;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, rgba(193, 209, 189, 0.72), #707cd5);
+    border: 2px solid #E6E0E0;
+}
+
+#employment .f-style .subm input:hover {
+    color: #39d0e1;
+    background: linear-gradient(to bottom, #1b485b, #3f4fc3);
+}
+/* 单位注册---按钮链接作用 */
+#employment .newUser {
+    padding: 7px 0 0 17px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+#employment .newUser a:hover {
+    color: #600;
+}
+/* 招聘就业首页--右侧内容页-- */
+#employment .cont{
+    float: right;
+    width: 79%;
+    min-height: 560px;
+    padding-bottom: 10px;
+    margin: 10px 5px 10px 10px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #aaa;
+    box-shadow: 0 1px 3px #cccccc;
+}
+
+#employment  .cont-d {
+    float: left;
+}
+
+#employment  .cont-a {
+    float: right;
+}
+
+#employment  .cont-b {
+    float: left;
+}
+
+#employment  .cont-c {
+    float: right;
+}
+/*--招聘就业--注册页面样式--*/
+.register{
+    position: relative;
+    float: right;
+    margin: 10px 20px 20px 10px;
+    width: 78%;
+    box-shadow: 0 0 4px #8A7D7D;
+    border-radius: 10px;
+    background: url('../img/m.jpg');
+    font-size: 15px;
+    font-weight: 600;
+}
+.register .title{
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 30px;
+    font-weight: 800;
+    font-size: 25px;
+    color: #353036;
+}
+.regiU{
+    width: 59%;
+}
+.regiU li{
+    margin-bottom: 10px;
+    margin-left: 268px;
+}
+.regiU li input{
+    float: right;
+    border: 1px solid #908CB3;
+    box-shadow: 0 0 2px #9298B6;
+    border-radius: 0 3px 3px 0 ;
+}
+.regiU li input:hover{
+    box-shadow: 0 0 3px #3A3C3D;
+}
+.regiU textarea{
+    border-radius: 3px;
+    border: 1px solid #6958DB;
+    box-shadow: 0 0 2px #7981AF;
+}
+.regiU textarea:hover{
+    box-shadow: 0 0 3px #3A3C3D;
+}
+/*--招聘就业--注册页面--表单--营销执照图片--*/
+.register .picS{
+    width: 100%;
+    margin: 6px 0;
+    display: inline-block;
+    text-align: center;
+}
+.register .picS .text{
+    margin-left: 0;
+    font-size: 13px;
+    color: #E92727;
+}
+.register .picS a:hover{
+    color: #F06306;
+}
+/*--招聘就业--注册页面--表单--提交按钮--*/
+.register .regi #mysubmit{
+    position: absolute;
+    bottom: 225px;
+    right: 221px;
+    padding: 7px 10px;
+    font-size: 13px;
+    border-radius: 5px;
+}
+.mysubmit{
+    color: #ecf2f4;
+    background: #0c60d4;
+}
+.mysubmit:hover{
+    background: #4B0286;
+    color: #FCFCFC;
+}
+/*--招聘就业--注册页面--表单--阅读协议--*/
+.register .marBot{
+    margin-bottom: 30px;
+}
+.register .after{
+    position: relative;
+}
+/*--招聘就业--注册页面--表单--标注必填选项--*/
+.register .after:after{
+    position: absolute;
+    display: inline-block;
+    content: '*';
+    right: -17px;
+    top: 1px;
+    color: #fb3a3a;
+    font-size: 19px;
+}
+/*--招聘就业--注册页面--表单--输入框后面描述文字--*/
+/* te, te1控制文字颜色*/
+.te,.te1{
+    position: absolute;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    width: 178px;
+    left: 297px;
+    top: 1px;
+    font-size: 10px;
+}
+.te1{
+    color: #CC1010;
+}
+.te{
+    color: #4D4949;
+}
+/*
+#loginHidd{
+    display: none;
+}*/
+/* --招聘就业--登录页面-- */
+/* --此页面一般覆盖在其他页面上方-- */
+#loginHidd{
+    display: inline-block;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(204, 206, 209, 0.92);
+    width: 100%;
+    height: 1050px;
+}
+/* --招聘就业--登录页面--控制from位置-- */
+#loginHidd .LoCenter{
+    position: absolute;
+    top: 29%;
+    left: 33%;
+    width: 500px;
+    height: 300px;
+    background: url('../img/login.png')
+}
+/* --招聘就业--登录页面--ul--使表单整齐-- */
+#loginHidd ul {
+    padding-top: 74px;
+    padding-left: 262px;
+}
+
+#loginHidd li {
+    position: relative;
+    height: 25px;
+    line-height: 25px;
+    padding-top: 12px;
+    padding-left: 16px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#loginHidd input {
+    outline: none;
+    border-radius: 2px;
+}
+#loginHidd input:focus {
+    border: 1px solid rgba(0, 0, 230, 0.5);
+    box-shadow: 0 0 3px rgba(0, 0, 230, 0.8);
+}
+
+#loginHidd .code {
+    margin-left: 5px;
+    padding: 0 4px;
+    border: 1px solid #111;
+    background: #f00;
+}
+
+#loginHidd .right-con {
+    position: absolute;
+    top: 15px;
+    right: 42px;
+}
+
+#loginHidd .left-con {
+    margin-left: 10px;
+}
+/* --招聘就业--登录页面--提交按钮-- */
+#loginHidd .subm input {
+    padding: 5px 7px;
+    margin: 5px 20px;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, rgba(193, 209, 189, 0.72), #707cd5);
+}
+
+#loginHidd .subm input:hover {
+    color: rgb(204, 199, 236);
+    background: linear-gradient(to bottom, rgb(50, 31, 162), #3f4fc3);
+}
+/* --招聘就业--登录页面--关闭此页面-- */
+#loginHidd .close{
+    position: absolute;
+    top: -3px;
+    right: 7px;
+    font-size: 30px;
+}
+.close a{
+    color: #4E4C4C;
+}
+.close a:hover{
+    color: #882C2C;
+}
+/*--招聘就业--用户已经登录--显示登录人信息--*/
+.adminShow{
+    width: 87%;
+    margin: 10px 10px 5px 10px;
+    padding: 10px 0 10px 4px;
+    border: 2px solid #f7f7f7;
+    box-shadow: 0 0 4px #7a93c0;
+}
+/*--招聘就业--用户已经登录--用户姓名--*/
+.ads{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+}
+.adminShow img{
+    width: 20px;
+    height: 20px;
+    margin: auto 5px;
+}
+.ads .username{
+    color: #00f;
+    font-size: 20px;
+}
+/*--招聘就业--用户已经登录--退出按钮--*/
+.ads button{
+    padding: 1px 9px;
+    margin-left: 10px;
+    border-radius: 5px;
+    vertical-align: top;
+    color: #726283;
+    background: linear-gradient(to right, #ebda97, rgba(240, 230, 222, 0.32));
+}
+.ads button:hover{
+    color: #fff;
+    background: #6958DB;
+}
+/*-- 链接到4个不同单位-- */
+.userLink li{
+    margin-left: 20px;
+    font-size: 13px;
+    height: 30px;
+}
+.userLink a{
+    color: #332C2C;
+}
+.userLink a:hover{
+    color: rgba(168, 21, 21, 0.77);
+}
+/*--招聘就业---班级列表*/
+/* 不同班级链接 */
+.left-class {
+    float: left;
+}
+.left-class ul{
+    width: 85%;
+    margin-left: 10px;
+}
+.left-class li{
+    padding: 6px 5px;
+    margin: 15px 0;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 5px 5px 4px rgba(156, 210, 216, 0.74);
+    font-size: 18px;
+    background: #d3e8f0;
+}
+.left-class li:hover{
+    cursor: pointer;
+    color: #fff;
+    background: #006df7;
+}
+/* 班级同学的详细信息,包括头像,姓名... */
+.right-class {
+    float: right;
+    width: 74%;
+    height: 537px;
+    margin-top: 7px;
+    margin-right: 20px;
+    padding: 20px 10px 10px 10px;
+    background: rgba(211, 232, 240, 0.45);
+    border-radius: 5px;
+}
+.right-class .top-content{
+    text-align: center;
+    padding-bottom: 10px;
+}
+.top-content span,
+.top-content a{
+    margin-right: 10px;
+}
+/*---招聘就业--个人简历*/
+.personal{
+    padding-left: 45px;
+}
+.personal img{
+    width: 91%;
+    height: 158px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+.personal li{
+    float: left;
+    width: 27%;
+    margin: 18px 30px 20px 10px;
+}
+.personal .name{
+    display: inline-block;
+    margin:  0 5px;
+}
+.personal li a:hover{
+    color: #961414;
+}
+/*后台管理登录页面*/
+#admin{
+    position: relative;
+    width: 100%;
+    min-width: 1460px;
+}
+/* 标题 */
+#admin .adminUser{
+    position: absolute;
+    top: 39px;
+    letter-spacing: 10px;
+    font-size: 65px;
+    color: #fff;
+    left: 585px;
+    font-weight: 800;
+}
+/* from--ul */
+#admin .adLogin{
+    position: absolute;
+    top: 211px;
+    left: 624px;
+}
+#admin .adLogin label{
+    width: 130px;
+}
+#admin li{
+    margin: 21px 0;
+    color: #fff;
+}
+#admin input{
+    display: inline-block;
+    padding-left: 9px;
+    border: none;
+    color: #666;
+    height: 30px;
+    border-radius: 5px;
+}
+#admin input:hover{
+    box-shadow: 0 0 2px #f0f0f0;
+}
+/*验证码  */
+#admin .code{
+    height: 30px;
+    line-height: 30px;
+    vertical-align: top;
+}
+#admin img{
+    width: 65px;
+    height: 30px;
+    vertical-align: top;
+    margin-left: 10px;
+}
+#admin #but input{
+    width: 60px;
+    height: 30px;
+    padding-left: 0px;
+    margin: 20px 29px;
+    border: none;
+    border-radius: 5px;
+    color: #f3f2ff;
+    background-color: #04305bc9;
+}
+#admin #but input:hover{
+    background-color: #0f283fc9;
+}
+/* --招聘就业--footer */
+#footer {
+    clear: both;
+}
+
+#footer  .link {
+    padding-left: 10px;
+    height: 108px;
+    margin: 0 8px 0 8px;
+    border: 1px solid #ffffff;
+    background-color: #ecf2f4;
+    box-shadow: 0 0 5px #aaaaaa;
+}
+
+#footer  .link:hover {
+    box-shadow: 0 0 7px rgba(0, 0, 210, 0.6);
+}
+
+#footer  .link .til {
+    padding: 5px 0 5px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgba(241, 24, 24, 0.84);
+}
+
+#footer  .link ul li {
+    float: left;
+    margin-right: 10px;
+}
+
+#footer  .link ul li img {
+    width: 133px;
+    height: 67px;
+    box-shadow: 0 0 3px #4a3600;
+}
+
+#footer  .link ul li img:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 240, 0.8);
+}
+
+#footer  .link .dec {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+}
+
+#footer .manage {
+    clear: both;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 13px;
+}
+
+#footer .manage a {
+    color: #aa0000;
+}

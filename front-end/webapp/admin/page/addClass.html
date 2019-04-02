@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台首页</title>
+    <link rel="stylesheet" href="../semantic-ui/semantic.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script type="text/javascript" src="../lib/wangEditor.min.js"></script>
+</head>
+<body>
+<div class="ui container">
+    <form action="" class="ui form">
+        <div class="ui form">
+            <div class="inline field six wide">
+                <label>专业名称</label>
+                <input type="text" placeholder="输入专业名称">
+        </div>
+            <div class="inline field six wide">
+                <label>班级名称</label>
+                <input type="text" placeholder="输入班级名称">
+            </div>
+            <div class="inline field six wide">
+                <label>入学时间</label>
+                <input type="text" placeholder="输入入学时间">
+            </div>
+            <div class="inline field six wide">
+                <label>男生人数</label>
+                <input type="text" placeholder="输入男生人数">
+            </div>
+            <div class="inline field six wide">
+                <label>女生人数</label>
+                <input type="text" placeholder="输入女生人数">
+            </div>
+            <div class="inline field">
+                <div id="editor-class"></div>
+            </div>
+            <div class="inline field">
+                <button class="ui primary button">添加</button>
+                <button class="ui red button">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    var E = window.wangEditor;
+    var editor = new E('#editor-class');
+    editor.create();
+</script>
+</html>

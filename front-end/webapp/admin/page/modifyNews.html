@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台首页</title>
+    <link rel="stylesheet" href="../semantic-ui/semantic.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="ui container">
+    <form action="" class="ui form">
+        <div class="inline field">
+            <label class="" for="title">新闻标题</label>
+            <input type="text" name="title" id="title" placeholder="输入标题">
+        </div>
+        <div class="inline field">
+            <label class="" for="newsType">新闻类型</label>
+            <select name="newsTypeId" id="newsType">
+                <option value="1">通知公告</option>
+                <option value="2">本科生培养</option>
+                <option value="3">研究生培养</option>
+            </select>
+        </div>
+        <div class="inline field">
+            <label class="" for="newsType">设置轮播</label>
+            <div class="upload-pic">
+                <div class="upload-form" name="upload" method="post"  enctype="multipart/form-data">
+                    <button id="browse-pic" type="button" class="ui blue basic button">设置轮播</button>
+                    <input id="file" name="filename" type="file">
+                </div>
+
+            </div>
+            <div class="ui list list-pic hidden">
+                <div class="item">
+                    <span class="pic-name"></span>
+                    <span class="cancel"><i class="remove icon"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="inline field">
+            <label class="" >附件列表</label>
+            <div class="upload">
+                <div class="upload-form" name="upload" method="post"  enctype="multipart/form-data">
+                    <button id="browse" type="button" class="ui ui teal basic button">添加文件</button>
+                </div>
+            </div>
+            <div class="ui list list-file">
+            </div>
+        </div>
+
+        <div class="inline field">
+            <div id="editor"></div>
+        </div>
+        <div class="inline field">
+            <button class="ui primary button">修改</button>
+            <button class="ui red button">重置</button>
+        </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript" src="../lib/wangEditor.min.js"></script>
+<script src="../semantic-ui/jquery-3.2.1.js"></script>
+<script src="../semantic-ui/semantic.min.js"></script>
+<script>
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.create();
+
+    $('#browse-pic').click(function () {
+        $('#file').click();
+    });
+    $('#file').change(function () {
+        if(this.value){
+            $('.pic-name').text(this.files[0].name);
+            $('.list-pic').fadeIn();
+        }
+    });
+    $('.list-pic .cancel').click(function () {
+        $('#file').value=false;
+        $('.pic-name').text('');
+        $('.list-pic').hide();
+    });
+    //添加文件
+    $('#browse').click(function () {
+        var fileInput=$('<input class="hidden" type="file">');
+        fileInput.change(function () {
+            if(this.value){
+                $('.upload-form').append(fileInput);
+
+                var item=$('<div class="item"></div>');
+                var filename=$('<span class="filename"></span>').text(this.files[0].name);
+                var cancel=$('<span class="cancel"><i class="remove icon"></i></span>');
+                cancel.click(function () {
+                    $(this).parent().remove();
+                    fileInput.remove();
+                });
+                item.append(filename).append(cancel);
+                $('.list-file').append(item);
+                $('.list-file').fadeIn();
+            }
+        });
+        fileInput.click();
+    });
+
+</script>
+</html>
